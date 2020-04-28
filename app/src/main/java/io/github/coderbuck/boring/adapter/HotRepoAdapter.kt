@@ -7,8 +7,8 @@ import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import io.github.coderbuck.boring.R
-import io.github.coderbuck.boring.bean.HotRepoItem
-import io.github.coderbuck.boring.bean.HotRepoList
+import io.github.coderbuck.boring.bean.github.HotRepoItem
+import io.github.coderbuck.boring.bean.github.HotRepoList
 import io.github.coderbuck.boring.databinding.ItemGithubRepoBinding
 import saschpe.android.customtabs.CustomTabsHelper
 import saschpe.android.customtabs.WebViewFallback

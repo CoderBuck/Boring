@@ -5,10 +5,9 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.github.coderbuck.boring.adapter.HotRepoAdapter
 import io.github.coderbuck.boring.api.Api
-import io.github.coderbuck.boring.bean.HotRepoList
+import io.github.coderbuck.boring.bean.github.HotRepoList
 import io.github.coderbuck.boring.databinding.ActivityMainBinding
 import retrofit2.Call
-import retrofit2.CallAdapter
 import retrofit2.Callback
 import retrofit2.Response
 import timber.log.Timber

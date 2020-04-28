@@ -1,7 +1,7 @@
 package io.github.coderbuck.boring.api
 
-import io.github.coderbuck.boring.bean.HotDevList
-import io.github.coderbuck.boring.bean.HotRepoList
+import io.github.coderbuck.boring.bean.github.HotDevList
+import io.github.coderbuck.boring.bean.github.HotRepoList
 import retrofit2.Call
 import retrofit2.http.GET
 

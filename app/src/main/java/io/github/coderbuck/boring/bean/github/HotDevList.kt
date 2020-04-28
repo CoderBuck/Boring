@@ -1,4 +1,4 @@
-package io.github.coderbuck.boring.bean
+package io.github.coderbuck.boring.bean.github
 
 class HotDevList : ArrayList<HotDevItem>()
 
