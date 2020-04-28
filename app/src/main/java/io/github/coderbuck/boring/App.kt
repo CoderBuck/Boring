@@ -9,7 +9,11 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        Timber.plant(Timber.DebugTree())
+        Timber.plant(object : Timber.DebugTree() {
+            override fun createStackElementTag(element: StackTraceElement): String? {
+                return "kd-" + super.createStackElementTag(element)
+            }
+        })
         Utils.init(this)
         CrashUtils.init()
     }
