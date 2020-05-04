@@ -8,7 +8,7 @@ object Api {
     val BASE_URL_GITHUB = "https://ghapi.huchen.dev/"
 
     private val retrofit = Retrofit.Builder()
-        .baseUrl(BASE_URL_GITHUB)
+        .baseUrl(GithubApi.url)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 

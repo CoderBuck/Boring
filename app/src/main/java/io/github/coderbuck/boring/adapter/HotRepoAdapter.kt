@@ -30,8 +30,12 @@ class HotRepoAdapter : RecyclerView.Adapter<HotRepoAdapter.Holder>() {
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val hotRepoItem = items[position]
         holder.hotRepo = hotRepoItem
-        holder.binding.name.text = hotRepoItem.name
-        holder.binding.description.text = hotRepoItem.description
+        holder.binding.apply {
+            name.text = hotRepoItem.name
+            lang.text = hotRepoItem.language
+            starCount.text = hotRepoItem.currentPeriodStars.toString()
+            description.text = hotRepoItem.description
+        }
     }
 
     class Holder(val binding: ItemGithubRepoBinding) : RecyclerView.ViewHolder(binding.root) {

@@ -8,6 +8,10 @@ import retrofit2.http.GET
 
 interface GithubApi {
 
+    companion object {
+        const val url = "https://ghapi.huchen.dev/"
+    }
+
     @GET("repositories?language=javascript&since=weekly")
     fun getHotRepoList(): Call<HotRepoList>
 

@@ -5,6 +5,7 @@ import com.blankj.utilcode.util.CrashUtils
 import com.blankj.utilcode.util.Utils
 import timber.log.Timber
 
+@Suppress("unused")
 class App : Application() {
 
     override fun onCreate() {
@@ -15,6 +16,6 @@ class App : Application() {
             }
         })
         Utils.init(this)
-        CrashUtils.init()
+        CrashUtils.init(filesDir.path + "/crash/")
     }
 }

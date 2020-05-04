@@ -1,7 +1,9 @@
 package io.github.coderbuck.boring
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.github.coderbuck.boring.adapter.HotRepoAdapter
 import io.github.coderbuck.boring.api.Api
@@ -24,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.rv.layoutManager = LinearLayoutManager(this)
+        binding.rv.addItemDecoration(RecycleViewDivider(this,RecycleViewDivider.VERTICAL,R.drawable.common_item_divider))
         binding.rv.adapter = adapter
 
         request()
