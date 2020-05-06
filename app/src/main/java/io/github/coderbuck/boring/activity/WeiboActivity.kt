@@ -1,11 +1,13 @@
-package io.github.coderbuck.boring
+package io.github.coderbuck.boring.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import io.github.coderbuck.boring.R
+import io.github.coderbuck.boring.RecycleViewDivider
 import io.github.coderbuck.boring.adapter.WeiboHotAdapter
 import io.github.coderbuck.boring.api.Api
-import io.github.coderbuck.boring.databinding.ActivityMainBinding
+import io.github.coderbuck.boring.databinding.ActivityWeiboBinding
 import io.github.coderbuck.boring.util.HtmlParser
 import retrofit2.Call
 import retrofit2.Callback
@@ -16,15 +18,21 @@ class WeiboActivity : AppCompatActivity() {
 
     val adapter = WeiboHotAdapter()
 
-    lateinit var binding: ActivityMainBinding
+    lateinit var binding: ActivityWeiboBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityWeiboBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.rv.layoutManager = LinearLayoutManager(this)
-        binding.rv.addItemDecoration(RecycleViewDivider(this, RecycleViewDivider.VERTICAL, R.drawable.common_item_divider))
+        binding.rv.addItemDecoration(
+            RecycleViewDivider(
+                this,
+                RecycleViewDivider.VERTICAL,
+                R.drawable.common_item_divider
+            )
+        )
         binding.rv.adapter = adapter
 
 //        request()
