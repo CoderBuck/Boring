@@ -16,7 +16,14 @@ object Api {
         .addConverterFactory(ScalarsConverterFactory.create())
         .build()
 
+    private val zhihuRetrofit = Retrofit.Builder()
+        .baseUrl(GithubApi.url)
+        .addConverterFactory(ScalarsConverterFactory.create())
+        .build()
+
     val github = githubRetrofit.create(GithubApi::class.java)
 
     val weibo = weiboRetrofit.create(WeiboApi::class.java)
+
+    val zhihu = weiboRetrofit.create(ZhihuApi::class.java)
 }

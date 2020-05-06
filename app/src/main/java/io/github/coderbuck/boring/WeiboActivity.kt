@@ -27,7 +27,30 @@ class WeiboActivity : AppCompatActivity() {
         binding.rv.addItemDecoration(RecycleViewDivider(this, RecycleViewDivider.VERTICAL, R.drawable.common_item_divider))
         binding.rv.adapter = adapter
 
-        request()
+//        request()
+
+        zhihu()
+
+
+    }
+
+    fun zhihu() {
+        val call = Api.zhihu.getHots()
+        call.enqueue(object : Callback<String?> {
+            override fun onFailure(call: Call<String?>, t: Throwable) {
+                Timber.w("onFailure")
+            }
+
+            override fun onResponse(call: Call<String?>, response: Response<String?>) {
+                val body = response.body()
+                if (body == null) {
+                    Timber.w("body == null")
+                    return
+                }
+                Timber.d("onResponse " + body)
+                HtmlParser.getZhihuHotList(body)
+            }
+        })
     }
 
     private fun request() {
