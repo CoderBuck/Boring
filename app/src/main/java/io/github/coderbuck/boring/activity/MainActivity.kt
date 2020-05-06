@@ -12,9 +12,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
-
-        for (i in 1..100) {
-            binding.textView.append("xxx \n")
+        binding.tabLayout.apply {
+            addTab(newTab().apply { text = "知乎" })
+            addTab(newTab().apply { text = "微博" })
+            addTab(newTab().apply { text = "Github" })
         }
     }
 }
