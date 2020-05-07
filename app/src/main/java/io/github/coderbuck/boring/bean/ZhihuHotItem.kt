@@ -5,5 +5,6 @@ data class ZhihuHotItem(
     val title: String,
     val excerpt: String,
     val metrics: String,
-    val img: String
+    val img: String,
+    val link: String
 )

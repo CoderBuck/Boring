@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:gravity="center_vertical"
     android:orientation="horizontal"
     android:padding="8dp">
 
@@ -16,25 +18,32 @@
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:maxLines="1" />
+            android:maxLines="2"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1" />
 
         <TextView
             android:id="@+id/desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:maxLines="1" />
+            android:maxLines="1"
+            android:visibility="gone" />
 
         <TextView
+            android:layout_marginTop="8dp"
             android:id="@+id/hot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:lines="1" />
+            android:lines="1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            tools:text="234 万热度" />
 
     </LinearLayout>
 
     <!-- 图片 -->
     <ImageView
         android:id="@+id/img"
+        android:layout_marginLeft="8dp"
+        android:scaleType="centerCrop"
         android:layout_width="100dp"
         android:layout_height="75dp" />
 

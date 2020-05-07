@@ -1,7 +1,9 @@
 package io.github.coderbuck.boring.adapter
 
 import android.annotation.SuppressLint
+import android.net.Uri
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
@@ -11,6 +13,7 @@ import io.github.coderbuck.boring.R
 import io.github.coderbuck.boring.bean.ZhihuHotItem
 import io.github.coderbuck.boring.databinding.ItemZhihuBinding
 import saschpe.android.customtabs.CustomTabsHelper
+import saschpe.android.customtabs.WebViewFallback
 
 class ZhihuHotAdapter : RecyclerView.Adapter<ZhihuHotAdapter.Holder>() {
     val items = mutableListOf<ZhihuHotItem>()
@@ -29,10 +32,15 @@ class ZhihuHotAdapter : RecyclerView.Adapter<ZhihuHotAdapter.Holder>() {
         val item = items[position]
         holder.item = item
         holder.binding.apply {
-            title.text = "${item.index} ${item.title}"
-            desc.text = item.excerpt
+            title.text = item.title
             hot.text = item.metrics
-            Glide.with(root.context).load(item.img).into(img)
+
+            if (item.img.isBlank()) {
+                img.visibility = View.GONE
+            } else {
+                img.visibility = View.VISIBLE
+                Glide.with(root.context).load(item.img).into(img)
+            }
         }
     }
 
@@ -48,15 +56,14 @@ class ZhihuHotAdapter : RecyclerView.Adapter<ZhihuHotAdapter.Holder>() {
                 .build()
             CustomTabsHelper.addKeepAliveExtra(context, customTabsIntent.intent)
 
-//            binding.root.setOnClickListener {
-//                val url = "https://s.weibo.com" + item.
-//                CustomTabsHelper.openCustomTab(
-//                    context,
-//                    customTabsIntent,
-//                    Uri.parse(url),
-//                    WebViewFallback()
-//                )
-//            }
+            binding.root.setOnClickListener {
+                CustomTabsHelper.openCustomTab(
+                    context,
+                    customTabsIntent,
+                    Uri.parse(item.link),
+                    WebViewFallback()
+                )
+            }
         }
     }
 }

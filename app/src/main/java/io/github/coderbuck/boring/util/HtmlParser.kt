@@ -35,14 +35,15 @@ object HtmlParser {
             val metrics = it.select(".HotList-itemMetrics").first().text()
             val img = it.select(".HotList-itemImgContainer > img").first()?.attr("src") ?: ""
             Timber.d("item = { index = $index, title = $title, excerpt = $excerpt, metrics = $metrics, img = $img}")
-            list.add(ZhihuHotItem(index, title, excerpt, metrics, img))
+            list.add(ZhihuHotItem(index, title, excerpt, metrics, img, ""))
         }
         return list
     }
 
     fun getZhihuHotList2(html: String): List<ZhihuHotItem> {
         val list = mutableListOf<ZhihuHotItem>()
-        val json = html.substringAfter("\"hotList\":").substringBefore("]") + "]"
+        val json = html.substringAfter("\"hotList\":").substringBefore("\"}],") + "\"}]"
+        Timber.d("json = $json")
         val bean = GsonUtils.fromJson<ZhihuBean>(json, ZhihuBean::class.java)
         bean.withIndex().forEach() {
             val target = it.value.target
@@ -51,7 +52,8 @@ object HtmlParser {
             val excerpt = target.excerptArea.text
             val metrics = target.metricsArea.text
             val img = target.imageArea.url
-            list.add(ZhihuHotItem(index, title, excerpt, metrics, img))
+            val link = target.link.url
+            list.add(ZhihuHotItem(index, title, excerpt, metrics, img, link))
         }
         return list
     }
