@@ -26,13 +26,7 @@ class GithubActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.rv.layoutManager = LinearLayoutManager(this)
-        binding.rv.addItemDecoration(
-            RecycleViewDivider(
-                this,
-                RecycleViewDivider.VERTICAL,
-                R.drawable.common_item_divider
-            )
-        )
+        binding.rv.addItemDecoration(RecycleViewDivider(this, RecycleViewDivider.VERTICAL, R.drawable.common_item_divider))
         binding.rv.adapter = adapter
 
         request()

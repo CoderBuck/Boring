@@ -1,5 +1,7 @@
 package io.github.coderbuck.boring.util
 
+import com.blankj.utilcode.util.GsonUtils
+import io.github.coderbuck.boring.bean.ZhihuBean
 import io.github.coderbuck.boring.bean.ZhihuHotItem
 import io.github.coderbuck.boring.bean.weibo.WeiboHot
 import io.github.coderbuck.boring.bean.weibo.WeiboHotList
@@ -33,6 +35,22 @@ object HtmlParser {
             val metrics = it.select(".HotList-itemMetrics").first().text()
             val img = it.select(".HotList-itemImgContainer > img").first()?.attr("src") ?: ""
             Timber.d("item = { index = $index, title = $title, excerpt = $excerpt, metrics = $metrics, img = $img}")
+            list.add(ZhihuHotItem(index, title, excerpt, metrics, img))
+        }
+        return list
+    }
+
+    fun getZhihuHotList2(html: String): List<ZhihuHotItem> {
+        val list = mutableListOf<ZhihuHotItem>()
+        val json = html.substringAfter("\"hotList\":").substringBefore("]") + "]"
+        val bean = GsonUtils.fromJson<ZhihuBean>(json, ZhihuBean::class.java)
+        bean.withIndex().forEach() {
+            val target = it.value.target
+            val index = it.index.toString()
+            val title = target.titleArea.text
+            val excerpt = target.excerptArea.text
+            val metrics = target.metricsArea.text
+            val img = target.imageArea.url
             list.add(ZhihuHotItem(index, title, excerpt, metrics, img))
         }
         return list

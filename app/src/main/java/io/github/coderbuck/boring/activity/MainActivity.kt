@@ -2,6 +2,8 @@ package io.github.coderbuck.boring.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.tabs.TabLayoutMediator
+import io.github.coderbuck.boring.adapter.ViewPagerAdapter
 import io.github.coderbuck.boring.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -12,10 +14,13 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
-        binding.tabLayout.apply {
-            addTab(newTab().apply { text = "知乎" })
-            addTab(newTab().apply { text = "微博" })
-            addTab(newTab().apply { text = "Github" })
+
+        val tabTitles = listOf("知乎", "微博", "Github")
+        binding.apply {
+            viewPager.adapter = ViewPagerAdapter(this@MainActivity)
+            TabLayoutMediator(tabLayout,viewPager) { tab, position ->
+                tab.text = tabTitles[position]
+            }.attach()
         }
     }
 }
