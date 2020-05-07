@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import io.github.coderbuck.boring.adapter.ViewPagerAdapter
 import io.github.coderbuck.boring.databinding.ActivityMainBinding
+import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
