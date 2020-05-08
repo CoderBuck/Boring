@@ -39,5 +39,16 @@ class WeiboFragment : Fragment(R.layout.fragment_rv) {
             adapter.notifyDataSetChanged()
         })
 
+        model.refresh.observe(viewLifecycleOwner, Observer { refresh ->
+            if (!refresh) {
+                binding.refreshLayout.isRefreshing = false
+            }
+        })
+
+        binding.refreshLayout.setOnRefreshListener {
+            model.refresh.postValue(true)
+            model.request()
+        }
+
     }
 }

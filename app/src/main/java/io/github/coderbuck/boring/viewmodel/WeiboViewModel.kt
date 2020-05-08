@@ -15,14 +15,22 @@ class WeiboViewModel : ViewModel() {
 
     val items = MediatorLiveData<WeiboHotList>()
 
+    val refresh = MediatorLiveData<Boolean>()
+
+    init {
+        refresh.value = false
+    }
+
     fun request() {
         val call = Api.weibo.getHotRepoList()
         call.enqueue(object : Callback<String?> {
             override fun onFailure(call: Call<String?>, t: Throwable) {
+                refresh.postValue(false)
                 Timber.w("onFailure")
             }
 
             override fun onResponse(call: Call<String?>, response: Response<String?>) {
+                refresh.postValue(false)
                 Timber.d("onResponse")
                 val body = response.body()
                 if (body == null) {

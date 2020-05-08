@@ -14,14 +14,22 @@ class ZhihuViewModel : ViewModel() {
 
     val items = MediatorLiveData<List<ZhihuHotItem>>()
 
+    val refresh = MediatorLiveData<Boolean>()
+
+    init {
+        refresh.value = false
+    }
+
     fun request() {
         val call = Api.zhihu.getHots()
         call.enqueue(object : Callback<String?> {
             override fun onFailure(call: Call<String?>, t: Throwable) {
+                refresh.postValue(false)
                 Timber.w("onFailure")
             }
 
             override fun onResponse(call: Call<String?>, response: Response<String?>) {
+                refresh.postValue(false)
                 val body = response.body()
                 if (body == null) {
                     Timber.w("body == null")

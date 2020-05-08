@@ -11,6 +11,7 @@ import io.github.coderbuck.boring.RecycleViewDivider
 import io.github.coderbuck.boring.adapter.HotRepoAdapter
 import io.github.coderbuck.boring.databinding.FragmentRvBinding
 import io.github.coderbuck.boring.viewmodel.GithubViewModel
+import kotlinx.android.synthetic.main.fragment_rv.*
 
 class GithubFragment : Fragment(R.layout.fragment_rv) {
 
@@ -36,6 +37,17 @@ class GithubFragment : Fragment(R.layout.fragment_rv) {
             adapter.items.addAll(it)
             adapter.notifyDataSetChanged()
         })
+
+        model.refresh.observe(viewLifecycleOwner, Observer { refresh ->
+            if (!refresh) {
+                binding.refreshLayout.isRefreshing = false
+            }
+        })
+
+        binding.refreshLayout.setOnRefreshListener {
+            model.refresh.postValue(true)
+            model.request()
+        }
 
     }
 }
