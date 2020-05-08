@@ -1,19 +1,12 @@
 package io.github.coderbuck.boring.adapter
 
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.browser.customtabs.CustomTabsIntent
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import io.github.coderbuck.boring.R
 import io.github.coderbuck.boring.bean.weibo.WeiboHot
 import io.github.coderbuck.boring.bean.weibo.WeiboHotList
 import io.github.coderbuck.boring.databinding.ItemWeiboHotBinding
-import io.github.coderbuck.boring.util.CustomTabUtils
 import io.github.coderbuck.boring.util.DeepLinkUtils
-import saschpe.android.customtabs.CustomTabsHelper
-import saschpe.android.customtabs.WebViewFallback
 
 class WeiboHotAdapter : RecyclerView.Adapter<WeiboHotAdapter.Holder>() {
     val items = WeiboHotList()

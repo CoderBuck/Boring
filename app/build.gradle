@@ -3,6 +3,11 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
+// 禁用 synthetic 全局id, 使用 ViewBinding 代替
+androidExtensions {
+    features = ["parcelize"]
+}
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"

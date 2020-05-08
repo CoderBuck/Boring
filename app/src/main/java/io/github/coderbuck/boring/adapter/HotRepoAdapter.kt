@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import io.github.coderbuck.boring.bean.github.HotRepoItem
 import io.github.coderbuck.boring.bean.github.HotRepoList
 import io.github.coderbuck.boring.databinding.ItemGithubRepoBinding
-import io.github.coderbuck.boring.util.CustomTabUtils
 import io.github.coderbuck.boring.util.DeepLinkUtils
 
 

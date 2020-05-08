@@ -11,7 +11,6 @@ import io.github.coderbuck.boring.RecycleViewDivider
 import io.github.coderbuck.boring.adapter.HotRepoAdapter
 import io.github.coderbuck.boring.databinding.FragmentRvBinding
 import io.github.coderbuck.boring.viewmodel.GithubViewModel
-import kotlinx.android.synthetic.main.fragment_rv.*
 
 class GithubFragment : Fragment(R.layout.fragment_rv) {
 

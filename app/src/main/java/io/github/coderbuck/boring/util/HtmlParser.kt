@@ -45,7 +45,7 @@ object HtmlParser {
         val json = html.substringAfter("\"hotList\":").substringBefore("\"}],") + "\"}]"
         Timber.d("json = $json")
         val bean = GsonUtils.fromJson<ZhihuBean>(json, ZhihuBean::class.java)
-        bean.withIndex().forEach() {
+        bean.withIndex().forEach {
             val target = it.value.target
             val index = it.index.toString()
             val title = target.titleArea.text

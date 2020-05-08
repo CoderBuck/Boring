@@ -9,10 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import io.github.coderbuck.boring.R
 import io.github.coderbuck.boring.RecycleViewDivider
 import io.github.coderbuck.boring.adapter.WeiboHotAdapter
-import io.github.coderbuck.boring.adapter.ZhihuHotAdapter
 import io.github.coderbuck.boring.databinding.FragmentRvBinding
 import io.github.coderbuck.boring.viewmodel.WeiboViewModel
-import io.github.coderbuck.boring.viewmodel.ZhihuViewModel
 
 class WeiboFragment : Fragment(R.layout.fragment_rv) {
 

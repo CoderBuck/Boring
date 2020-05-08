@@ -1,6 +1,5 @@
 package io.github.coderbuck.boring.api
 
-import io.github.coderbuck.boring.bean.weibo.WeiboHotList
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Headers

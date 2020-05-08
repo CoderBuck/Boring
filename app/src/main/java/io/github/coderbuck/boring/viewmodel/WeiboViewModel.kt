@@ -3,7 +3,6 @@ package io.github.coderbuck.boring.viewmodel
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModel
 import io.github.coderbuck.boring.api.Api
-import io.github.coderbuck.boring.bean.ZhihuHotItem
 import io.github.coderbuck.boring.bean.weibo.WeiboHotList
 import io.github.coderbuck.boring.util.HtmlParser
 import retrofit2.Call
