@@ -1,17 +1,13 @@
 package io.github.coderbuck.boring.adapter
 
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.browser.customtabs.CustomTabsIntent
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import io.github.coderbuck.boring.R
 import io.github.coderbuck.boring.bean.github.HotRepoItem
 import io.github.coderbuck.boring.bean.github.HotRepoList
 import io.github.coderbuck.boring.databinding.ItemGithubRepoBinding
-import saschpe.android.customtabs.CustomTabsHelper
-import saschpe.android.customtabs.WebViewFallback
+import io.github.coderbuck.boring.util.CustomTabUtils
+import io.github.coderbuck.boring.util.DeepLinkUtils
 
 
 class HotRepoAdapter : RecyclerView.Adapter<HotRepoAdapter.Holder>() {
@@ -43,21 +39,11 @@ class HotRepoAdapter : RecyclerView.Adapter<HotRepoAdapter.Holder>() {
         lateinit var hotRepo: HotRepoItem
 
         init {
-            val context = binding.root.context
-            val customTabsIntent = CustomTabsIntent.Builder()
-                .addDefaultShareMenuItem()
-                .setToolbarColor(ContextCompat.getColor(context, R.color.colorPrimary))
-                .setShowTitle(true)
-                .build()
-            CustomTabsHelper.addKeepAliveExtra(context, customTabsIntent.intent)
-
             binding.root.setOnClickListener {
-                CustomTabsHelper.openCustomTab(
-                    context,
-                    customTabsIntent,
-                    Uri.parse(hotRepo.url),
-                    WebViewFallback()
-                )
+                val context = binding.root.context
+                val link = hotRepo.url
+//                CustomTabUtils.open(context, link)
+                DeepLinkUtils.open(context, link)
             }
         }
 

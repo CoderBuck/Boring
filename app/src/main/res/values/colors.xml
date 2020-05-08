@@ -71,4 +71,8 @@
 
     <color name="darkGray">#656D78</color>
     <color name="darkGrayDark">#434A54</color>
+
+    <color name="zhihu">#2196F3</color>
+    <color name="weibo">#FF9800</color>
+    <color name="github">#191F22</color>
 </resources>

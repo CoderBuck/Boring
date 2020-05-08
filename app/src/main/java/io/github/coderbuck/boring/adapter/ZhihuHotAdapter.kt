@@ -1,19 +1,30 @@
 package io.github.coderbuck.boring.adapter
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.content.IntentFilter
+import android.content.pm.PackageManager
+import android.drm.DrmStore
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
+import com.blankj.utilcode.util.ActivityUtils
+import com.blankj.utilcode.util.AppUtils
+import com.blankj.utilcode.util.IntentUtils
 import com.bumptech.glide.Glide
 import io.github.coderbuck.boring.R
 import io.github.coderbuck.boring.bean.ZhihuHotItem
 import io.github.coderbuck.boring.databinding.ItemZhihuBinding
+import io.github.coderbuck.boring.util.CustomTabUtils
+import io.github.coderbuck.boring.util.DeepLinkUtils
 import saschpe.android.customtabs.CustomTabsHelper
 import saschpe.android.customtabs.WebViewFallback
+import timber.log.Timber
 
 class ZhihuHotAdapter : RecyclerView.Adapter<ZhihuHotAdapter.Holder>() {
     val items = mutableListOf<ZhihuHotItem>()
@@ -48,22 +59,15 @@ class ZhihuHotAdapter : RecyclerView.Adapter<ZhihuHotAdapter.Holder>() {
         lateinit var item: ZhihuHotItem
 
         init {
-            val context = binding.root.context
-            val customTabsIntent = CustomTabsIntent.Builder()
-                .addDefaultShareMenuItem()
-                .setToolbarColor(ContextCompat.getColor(context, R.color.colorPrimary))
-                .setShowTitle(true)
-                .build()
-            CustomTabsHelper.addKeepAliveExtra(context, customTabsIntent.intent)
-
             binding.root.setOnClickListener {
-                CustomTabsHelper.openCustomTab(
-                    context,
-                    customTabsIntent,
-                    Uri.parse(item.link),
-                    WebViewFallback()
-                )
+                val context = binding.root.context
+                val link = item.link
+//                CustomTabUtils.open(context, link)
+                DeepLinkUtils.open(context, link)
             }
+
         }
+
+
     }
 }

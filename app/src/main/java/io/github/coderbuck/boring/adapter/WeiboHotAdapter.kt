@@ -10,6 +10,8 @@ import io.github.coderbuck.boring.R
 import io.github.coderbuck.boring.bean.weibo.WeiboHot
 import io.github.coderbuck.boring.bean.weibo.WeiboHotList
 import io.github.coderbuck.boring.databinding.ItemWeiboHotBinding
+import io.github.coderbuck.boring.util.CustomTabUtils
+import io.github.coderbuck.boring.util.DeepLinkUtils
 import saschpe.android.customtabs.CustomTabsHelper
 import saschpe.android.customtabs.WebViewFallback
 
@@ -34,21 +36,11 @@ class WeiboHotAdapter : RecyclerView.Adapter<WeiboHotAdapter.Holder>() {
         lateinit var item: WeiboHot
 
         init {
-            val context = binding.root.context
-            val customTabsIntent = CustomTabsIntent.Builder()
-                .addDefaultShareMenuItem()
-                .setToolbarColor(ContextCompat.getColor(context, R.color.colorPrimary))
-                .setShowTitle(true)
-                .build()
-            CustomTabsHelper.addKeepAliveExtra(context, customTabsIntent.intent)
             binding.root.setOnClickListener {
-                val url = "https://s.weibo.com" + item.href
-                CustomTabsHelper.openCustomTab(
-                    context,
-                    customTabsIntent,
-                    Uri.parse(url),
-                    WebViewFallback()
-                )
+                val context = binding.root.context
+                val link = "https://s.weibo.com" + item.href
+//                CustomTabUtils.open(context, link)
+                DeepLinkUtils.open(context, link)
             }
         }
     }
