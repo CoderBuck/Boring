@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import io.github.coderbuck.boring.bean.ZhihuHotItem
 import io.github.coderbuck.boring.databinding.ItemZhihuBinding
 import io.github.coderbuck.boring.util.DeepLinkUtils
@@ -34,7 +36,10 @@ class ZhihuHotAdapter : RecyclerView.Adapter<ZhihuHotAdapter.Holder>() {
                 img.visibility = View.GONE
             } else {
                 img.visibility = View.VISIBLE
-                Glide.with(root.context).load(item.img).into(img)
+                Glide.with(root.context)
+                    .load(item.img)
+                    .transform(CenterCrop(), RoundedCorners(15))
+                    .into(img)
             }
         }
     }
@@ -46,7 +51,6 @@ class ZhihuHotAdapter : RecyclerView.Adapter<ZhihuHotAdapter.Holder>() {
             binding.root.setOnClickListener {
                 val context = binding.root.context
                 val link = item.link
-//                CustomTabUtils.open(context, link)
                 DeepLinkUtils.open(context, link)
             }
 
