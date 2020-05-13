@@ -1,7 +1,9 @@
 package io.github.coderbuck.boring.fragment
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -10,6 +12,7 @@ import io.github.coderbuck.boring.R
 import io.github.coderbuck.boring.RecycleViewDivider
 import io.github.coderbuck.boring.adapter.HotRepoAdapter
 import io.github.coderbuck.boring.databinding.FragmentRvBinding
+import io.github.coderbuck.boring.util.provideViewModel
 import io.github.coderbuck.boring.viewmodel.GithubViewModel
 
 class GithubFragment : Fragment(R.layout.fragment_rv) {
@@ -20,7 +23,7 @@ class GithubFragment : Fragment(R.layout.fragment_rv) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        model = ViewModelProvider(this)[GithubViewModel::class.java]
+        model = provideViewModel(GithubViewModel::class.java)
         model.request()
     }
 

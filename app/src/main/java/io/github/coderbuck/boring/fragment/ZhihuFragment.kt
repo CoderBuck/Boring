@@ -10,6 +10,7 @@ import io.github.coderbuck.boring.R
 import io.github.coderbuck.boring.RecycleViewDivider
 import io.github.coderbuck.boring.adapter.ZhihuHotAdapter
 import io.github.coderbuck.boring.databinding.FragmentRvBinding
+import io.github.coderbuck.boring.util.provideViewModel
 import io.github.coderbuck.boring.viewmodel.ZhihuViewModel
 
 class ZhihuFragment : Fragment(R.layout.fragment_rv) {
@@ -20,7 +21,7 @@ class ZhihuFragment : Fragment(R.layout.fragment_rv) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        model = ViewModelProvider(this)[ZhihuViewModel::class.java]
+        model = provideViewModel(ZhihuViewModel::class.java)
         model.request()
     }
 

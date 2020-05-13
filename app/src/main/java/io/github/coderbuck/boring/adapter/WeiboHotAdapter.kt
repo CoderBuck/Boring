@@ -3,17 +3,20 @@ package io.github.coderbuck.boring.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import io.github.coderbuck.boring.R
 import io.github.coderbuck.boring.bean.weibo.WeiboHot
 import io.github.coderbuck.boring.bean.weibo.WeiboHotList
 import io.github.coderbuck.boring.databinding.ItemWeiboHotBinding
+import io.github.coderbuck.boring.databinding.ItemZhihuBinding
 import io.github.coderbuck.boring.util.DeepLinkUtils
+import io.github.coderbuck.boring.util.inflate
 
 class WeiboHotAdapter : RecyclerView.Adapter<WeiboHotAdapter.Holder>() {
     val items = WeiboHotList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val v = ItemWeiboHotBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return Holder(v)
+        val view = inflate(parent, R.layout.item_weibo_hot)
+        return Holder(ItemWeiboHotBinding.bind(view))
     }
 
     override fun getItemCount(): Int {

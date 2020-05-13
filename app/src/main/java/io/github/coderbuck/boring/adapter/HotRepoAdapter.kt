@@ -1,12 +1,13 @@
 package io.github.coderbuck.boring.adapter
 
-import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import io.github.coderbuck.boring.R
 import io.github.coderbuck.boring.bean.github.HotRepoItem
 import io.github.coderbuck.boring.bean.github.HotRepoList
 import io.github.coderbuck.boring.databinding.ItemGithubRepoBinding
 import io.github.coderbuck.boring.util.DeepLinkUtils
+import io.github.coderbuck.boring.util.inflate
 
 
 class HotRepoAdapter : RecyclerView.Adapter<HotRepoAdapter.Holder>() {
@@ -14,8 +15,8 @@ class HotRepoAdapter : RecyclerView.Adapter<HotRepoAdapter.Holder>() {
     val items = HotRepoList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val v = ItemGithubRepoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return Holder(v)
+        val view = inflate(parent, R.layout.item_github_repo)
+        return Holder(ItemGithubRepoBinding.bind(view))
     }
 
     override fun getItemCount(): Int {
@@ -45,6 +46,5 @@ class HotRepoAdapter : RecyclerView.Adapter<HotRepoAdapter.Holder>() {
                 DeepLinkUtils.open(context, link)
             }
         }
-
     }
 }

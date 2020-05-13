@@ -8,16 +8,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import io.github.coderbuck.boring.R
 import io.github.coderbuck.boring.bean.ZhihuHotItem
 import io.github.coderbuck.boring.databinding.ItemZhihuBinding
 import io.github.coderbuck.boring.util.DeepLinkUtils
+import io.github.coderbuck.boring.util.inflate
 
 class ZhihuHotAdapter : RecyclerView.Adapter<ZhihuHotAdapter.Holder>() {
     val items = mutableListOf<ZhihuHotItem>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val v = ItemZhihuBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return Holder(v)
+        val view = inflate(parent, R.layout.item_zhihu)
+        return Holder(ItemZhihuBinding.bind(view))
     }
 
     override fun getItemCount(): Int {

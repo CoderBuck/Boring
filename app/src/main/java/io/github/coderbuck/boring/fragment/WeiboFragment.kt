@@ -10,6 +10,7 @@ import io.github.coderbuck.boring.R
 import io.github.coderbuck.boring.RecycleViewDivider
 import io.github.coderbuck.boring.adapter.WeiboHotAdapter
 import io.github.coderbuck.boring.databinding.FragmentRvBinding
+import io.github.coderbuck.boring.util.provideViewModel
 import io.github.coderbuck.boring.viewmodel.WeiboViewModel
 
 class WeiboFragment : Fragment(R.layout.fragment_rv) {
@@ -20,7 +21,7 @@ class WeiboFragment : Fragment(R.layout.fragment_rv) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        model = ViewModelProvider(this)[WeiboViewModel::class.java]
+        model = provideViewModel(WeiboViewModel::class.java)
         model.request()
     }
 
