@@ -20,10 +20,12 @@ val AppCompatActivity.contentView: View
 
 fun <T : ViewModel> AppCompatActivity.provideViewModel(clazz: Class<T>) = ViewModelProvider(this)[clazz]
 
+
+/* Fragment */
+fun <T : ViewModel> Fragment.provideViewModel(clazz: Class<T>) = ViewModelProvider(this)[clazz]
+
+
 /* RecyclerView */
 fun <VH : RecyclerView.ViewHolder> RecyclerView.Adapter<VH>.inflate(parent: ViewGroup, @LayoutRes layoutId: Int): View {
     return LayoutInflater.from(parent.context).inflate(layoutId, parent, false)
 }
-
-/* Fragment */
-fun <T : ViewModel> Fragment.provideViewModel(clazz: Class<T>) = ViewModelProvider(this)[clazz]
