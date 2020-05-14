@@ -1,7 +1,6 @@
 package io.github.coderbuck.boring.adapter
 
 import android.annotation.SuppressLint
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -12,14 +11,12 @@ import io.github.coderbuck.boring.R
 import io.github.coderbuck.boring.bean.ZhihuHotItem
 import io.github.coderbuck.boring.databinding.ItemZhihuBinding
 import io.github.coderbuck.boring.util.DeepLinkUtils
-import io.github.coderbuck.boring.util.inflate
 
 class ZhihuHotAdapter : RecyclerView.Adapter<ZhihuHotAdapter.Holder>() {
     val items = mutableListOf<ZhihuHotItem>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val view = inflate(parent, R.layout.item_zhihu)
-        return Holder(ItemZhihuBinding.bind(view))
+        return Holder(parent, R.layout.item_zhihu)
     }
 
     override fun getItemCount(): Int {
@@ -46,7 +43,8 @@ class ZhihuHotAdapter : RecyclerView.Adapter<ZhihuHotAdapter.Holder>() {
         }
     }
 
-    class Holder(val binding: ItemZhihuBinding) : RecyclerView.ViewHolder(binding.root) {
+    class Holder(parent: ViewGroup, id: Int) : BaseHolder(parent, id) {
+        val binding = ItemZhihuBinding.bind(itemView)!!
         lateinit var item: ZhihuHotItem
 
         init {

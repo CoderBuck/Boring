@@ -7,7 +7,6 @@ import io.github.coderbuck.boring.bean.github.HotRepoItem
 import io.github.coderbuck.boring.bean.github.HotRepoList
 import io.github.coderbuck.boring.databinding.ItemGithubRepoBinding
 import io.github.coderbuck.boring.util.DeepLinkUtils
-import io.github.coderbuck.boring.util.inflate
 
 
 class HotRepoAdapter : RecyclerView.Adapter<HotRepoAdapter.Holder>() {
@@ -15,8 +14,7 @@ class HotRepoAdapter : RecyclerView.Adapter<HotRepoAdapter.Holder>() {
     val items = HotRepoList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val view = inflate(parent, R.layout.item_github_repo)
-        return Holder(ItemGithubRepoBinding.bind(view))
+        return Holder(parent, R.layout.item_github_repo)
     }
 
     override fun getItemCount(): Int {
@@ -34,15 +32,14 @@ class HotRepoAdapter : RecyclerView.Adapter<HotRepoAdapter.Holder>() {
         }
     }
 
-    class Holder(val binding: ItemGithubRepoBinding) : RecyclerView.ViewHolder(binding.root) {
-
+    class Holder(parent: ViewGroup, id: Int) : BaseHolder(parent, id) {
+        val binding = ItemGithubRepoBinding.bind(itemView)!!
         lateinit var hotRepo: HotRepoItem
 
         init {
             binding.root.setOnClickListener {
                 val context = binding.root.context
                 val link = hotRepo.url
-//                CustomTabUtils.open(context, link)
                 DeepLinkUtils.open(context, link)
             }
         }
