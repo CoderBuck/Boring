@@ -1,12 +1,9 @@
 package io.github.coderbuck.boring.fragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.github.coderbuck.boring.R
 import io.github.coderbuck.boring.RecycleViewDivider
@@ -14,12 +11,13 @@ import io.github.coderbuck.boring.adapter.HotRepoAdapter
 import io.github.coderbuck.boring.databinding.FragmentRvBinding
 import io.github.coderbuck.boring.util.provideViewModel
 import io.github.coderbuck.boring.viewmodel.GithubViewModel
+import me.buck.viewbindingktx.viewBinding
 
 class GithubFragment : Fragment(R.layout.fragment_rv) {
 
     private val adapter = HotRepoAdapter()
     private lateinit var model: GithubViewModel
-    private lateinit var binding: FragmentRvBinding
+    private val binding by viewBinding(FragmentRvBinding::bind)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +27,6 @@ class GithubFragment : Fragment(R.layout.fragment_rv) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentRvBinding.bind(view)
         binding.rv.layoutManager = LinearLayoutManager(context)
         binding.rv.addItemDecoration(RecycleViewDivider(context, RecycleViewDivider.VERTICAL, R.drawable.common_item_divider))
         binding.rv.adapter = adapter

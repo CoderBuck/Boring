@@ -7,16 +7,15 @@ import io.github.coderbuck.boring.R
 import io.github.coderbuck.boring.adapter.ViewPagerAdapter
 import io.github.coderbuck.boring.bean.EmTab
 import io.github.coderbuck.boring.databinding.ActivityMainBinding
-import io.github.coderbuck.boring.util.contentView
+import me.buck.viewbindingktx.viewBinding
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityMainBinding
+    private val binding by viewBinding(ActivityMainBinding::bind)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        binding = ActivityMainBinding.bind(contentView)
         setSupportActionBar(binding.toolbar)
 
         binding.apply {

@@ -12,12 +12,13 @@ import io.github.coderbuck.boring.adapter.WeiboHotAdapter
 import io.github.coderbuck.boring.databinding.FragmentRvBinding
 import io.github.coderbuck.boring.util.provideViewModel
 import io.github.coderbuck.boring.viewmodel.WeiboViewModel
+import me.buck.viewbindingktx.viewBinding
 
 class WeiboFragment : Fragment(R.layout.fragment_rv) {
 
     private val adapter = WeiboHotAdapter()
     private lateinit var model: WeiboViewModel
-    private lateinit var binding: FragmentRvBinding
+    private val binding by viewBinding(FragmentRvBinding::bind)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +28,6 @@ class WeiboFragment : Fragment(R.layout.fragment_rv) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentRvBinding.bind(view)
         binding.rv.layoutManager = LinearLayoutManager(context)
         binding.rv.addItemDecoration(RecycleViewDivider(context, RecycleViewDivider.VERTICAL, R.drawable.common_item_divider))
         binding.rv.adapter = adapter

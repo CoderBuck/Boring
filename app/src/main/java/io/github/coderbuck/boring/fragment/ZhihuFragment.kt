@@ -12,12 +12,13 @@ import io.github.coderbuck.boring.adapter.ZhihuHotAdapter
 import io.github.coderbuck.boring.databinding.FragmentRvBinding
 import io.github.coderbuck.boring.util.provideViewModel
 import io.github.coderbuck.boring.viewmodel.ZhihuViewModel
+import me.buck.viewbindingktx.viewBinding
 
 class ZhihuFragment : Fragment(R.layout.fragment_rv) {
 
     private val adapter = ZhihuHotAdapter()
     private lateinit var model: ZhihuViewModel
-    private lateinit var binding: FragmentRvBinding
+    private val binding by viewBinding(FragmentRvBinding::bind)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +28,6 @@ class ZhihuFragment : Fragment(R.layout.fragment_rv) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentRvBinding.bind(view)
         binding.rv.layoutManager = LinearLayoutManager(context)
         binding.rv.addItemDecoration(RecycleViewDivider(context, RecycleViewDivider.VERTICAL, R.drawable.common_item_divider))
         binding.rv.adapter = adapter

@@ -65,7 +65,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.8.1'
     implementation 'org.jsoup:jsoup:1.13.1'
     implementation 'saschpe.android:customtabs:2.0.0'
-
+    implementation 'com.github.coderbuck:viewbinding-ktx:1.0.0'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
