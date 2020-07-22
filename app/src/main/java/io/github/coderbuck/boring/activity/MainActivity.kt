@@ -7,6 +7,7 @@ import io.github.coderbuck.boring.R
 import io.github.coderbuck.boring.adapter.ViewPagerAdapter
 import io.github.coderbuck.boring.bean.EmTab
 import io.github.coderbuck.boring.databinding.ActivityMainBinding
+import io.github.coderbuck.boring.util.reduceDragSensitivity
 import me.buck.viewbindingktx.viewBinding
 
 class MainActivity : AppCompatActivity() {
@@ -19,11 +20,11 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
 
         binding.apply {
+            viewPager.reduceDragSensitivity()
             viewPager.adapter = ViewPagerAdapter(this@MainActivity)
             TabLayoutMediator(tabLayout, viewPager) { tab, position ->
                 tab.text = EmTab.values()[position].title
             }.attach()
         }
-
     }
 }
