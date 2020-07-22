@@ -33,6 +33,7 @@ fun <VH : RecyclerView.ViewHolder> RecyclerView.Adapter<VH>.inflate(parent: View
 
 /**
  * Reduces drag sensitivity of [ViewPager2] widget
+ * https://gist.github.com/AlShevelev/ea43096e8f66b0ec45a0ec0dd1e8cacc#file-gistfile1-txt
  */
 fun ViewPager2.reduceDragSensitivity() {
     val recyclerViewField = ViewPager2::class.java.getDeclaredField("mRecyclerView")
