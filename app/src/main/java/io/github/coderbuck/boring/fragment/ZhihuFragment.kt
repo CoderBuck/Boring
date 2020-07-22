@@ -45,7 +45,6 @@ class ZhihuFragment : Fragment(R.layout.fragment_rv) {
         })
 
         binding.refreshLayout.setOnRefreshListener {
-            model.refresh.postValue(true)
             model.request()
         }
 

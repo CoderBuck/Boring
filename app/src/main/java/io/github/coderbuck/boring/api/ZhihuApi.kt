@@ -12,5 +12,5 @@ interface ZhihuApi {
 
     @Headers("user-agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64)")
     @GET("https://www.zhihu.com/billboard")
-    fun getHots(): Call<String>
+    suspend fun getHots(): String
 }

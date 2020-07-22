@@ -13,7 +13,7 @@ interface GithubApi {
     }
 
     @GET("repositories?language=javascript&since=weekly")
-    fun getHotRepoList(): Call<HotRepoList>
+    suspend fun getHotRepoList(): HotRepoList
 
     @GET("developers?language=javascript&since=weekly")
     fun getHotDevList(): Call<HotDevList>

@@ -1,45 +1,33 @@
 package io.github.coderbuck.boring.viewmodel
 
-import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import io.github.coderbuck.boring.api.Api
 import io.github.coderbuck.boring.bean.github.HotRepoList
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
 class GithubViewModel : ViewModel() {
 
     val hotRepoList = MutableLiveData<HotRepoList>()
-
-    val refresh = MediatorLiveData<Boolean>()
+    val refresh = MutableLiveData<Boolean>()
 
     init {
         refresh.value = false
     }
 
     fun request() {
-        val call = Api.github.getHotRepoList()
-        call.enqueue(object : Callback<HotRepoList?> {
-            override fun onFailure(call: Call<HotRepoList?>, t: Throwable) {
+        refresh.postValue(true)
+        viewModelScope.launch {
+            try {
+                val repos = Api.github.getHotRepoList()
                 refresh.postValue(false)
-                Timber.w("onFailure")
-            }
-
-            override fun onResponse(call: Call<HotRepoList?>, response: Response<HotRepoList?>) {
+                hotRepoList.postValue(repos)
+            } catch (e: Exception) {
                 refresh.postValue(false)
-                Timber.d("onResponse")
-                val body = response.body()
-                if (body == null) {
-                    Timber.w("body == null")
-                    return
-                }
-                Timber.d("body.size = ${body.size}")
-                hotRepoList.postValue(body)
+                Timber.e(e, "onFailure")
             }
-
-        })
+        }
     }
 }
