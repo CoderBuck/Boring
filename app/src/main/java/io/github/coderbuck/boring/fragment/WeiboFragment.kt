@@ -3,6 +3,7 @@ package io.github.coderbuck.boring.fragment
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,12 +18,11 @@ import me.buck.viewbindingktx.viewBinding
 class WeiboFragment : Fragment(R.layout.fragment_rv) {
 
     private val adapter = WeiboHotAdapter()
-    private lateinit var model: WeiboViewModel
+    private val model: WeiboViewModel by viewModels()
     private val binding by viewBinding(FragmentRvBinding::bind)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        model = provideViewModel(WeiboViewModel::class.java)
         model.request()
     }
 
