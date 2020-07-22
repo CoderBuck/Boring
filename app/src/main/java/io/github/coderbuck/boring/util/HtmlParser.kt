@@ -25,22 +25,6 @@ object HtmlParser {
     }
 
     fun getZhihuHotList(html: String): List<ZhihuHotItem> {
-        val document = Jsoup.parse(html)
-        val elements = document.select("a.HotList-item")
-        val list = mutableListOf<ZhihuHotItem>()
-        elements.forEach {
-            val index = it.select(".HotList-itemIndex").first().text()
-            val title = it.select(".HotList-itemTitle").first().text()
-            val excerpt = it.select(".HotList-itemExcerpt").first()?.text() ?: ""
-            val metrics = it.select(".HotList-itemMetrics").first().text()
-            val img = it.select(".HotList-itemImgContainer > img").first()?.attr("src") ?: ""
-            Timber.d("item = { index = $index, title = $title, excerpt = $excerpt, metrics = $metrics, img = $img}")
-            list.add(ZhihuHotItem(index, title, excerpt, metrics, img, ""))
-        }
-        return list
-    }
-
-    fun getZhihuHotList2(html: String): List<ZhihuHotItem> {
         val list = mutableListOf<ZhihuHotItem>()
         val json = html.substringAfter("\"hotList\":").substringBefore("\"}],") + "\"}]"
         Timber.d("json = $json")

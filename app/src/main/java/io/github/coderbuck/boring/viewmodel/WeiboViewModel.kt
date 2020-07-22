@@ -22,7 +22,7 @@ class WeiboViewModel : ViewModel() {
         refresh.postValue(true)
         viewModelScope.launch {
             try {
-                val html = Api.weibo.getHotRepoList()
+                val html = Api.weibo.getHotListHtml()
                 val hots = HtmlParser.getWeiboHotList(html)
                 refresh.postValue(false)
                 items.postValue(hots)

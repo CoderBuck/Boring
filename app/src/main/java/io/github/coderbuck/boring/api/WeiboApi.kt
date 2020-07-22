@@ -13,5 +13,5 @@ interface WeiboApi {
 
     @Headers("user-agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64)")
     @GET("https://s.weibo.com/top/summary?cate=realtimehot")
-    suspend fun getHotRepoList(): String
+    suspend fun getHotListHtml(): String
 }

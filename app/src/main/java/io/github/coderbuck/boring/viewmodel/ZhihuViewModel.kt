@@ -1,6 +1,5 @@
 package io.github.coderbuck.boring.viewmodel
 
-import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -23,8 +22,8 @@ class ZhihuViewModel : ViewModel() {
         refresh.postValue(true)
         viewModelScope.launch {
             try {
-                val html = Api.zhihu.getHots()
-                val hots = HtmlParser.getZhihuHotList2(html)
+                val html = Api.zhihu.getHotListHtml()
+                val hots = HtmlParser.getZhihuHotList(html)
                 refresh.postValue(false)
                 items.postValue(hots)
             } catch (e: Exception) {
