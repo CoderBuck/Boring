@@ -7,7 +7,7 @@ import retrofit2.http.Headers
 interface ZhihuApi {
 
     companion object {
-        const val base_url = "https://www.zhihu.com/billboard"
+        const val BASE_URL = "https://www.zhihu.com/billboard"
     }
 
     @Headers("user-agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64)")

@@ -7,7 +7,7 @@ import retrofit2.http.Headers
 interface WeiboApi {
 
     companion object {
-        const val base_url = "https://s.weibo.com/top/summary?cate=realtimehot"
+        const val BASE_URL = "https://s.weibo.com/top/summary?cate=realtimehot"
 
     }
 

@@ -7,17 +7,17 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 object Api {
 
     private val githubRetrofit = Retrofit.Builder()
-        .baseUrl(GithubApi.url)
+        .baseUrl(GithubApi.BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
     private val weiboRetrofit = Retrofit.Builder()
-        .baseUrl(GithubApi.url)
+        .baseUrl(WeiboApi.BASE_URL)
         .addConverterFactory(ScalarsConverterFactory.create())
         .build()
 
     private val zhihuRetrofit = Retrofit.Builder()
-        .baseUrl(GithubApi.url)
+        .baseUrl(ZhihuApi.BASE_URL)
         .addConverterFactory(ScalarsConverterFactory.create())
         .build()
 
@@ -25,5 +25,5 @@ object Api {
 
     val weibo = weiboRetrofit.create(WeiboApi::class.java)
 
-    val zhihu = weiboRetrofit.create(ZhihuApi::class.java)
+    val zhihu = zhihuRetrofit.create(ZhihuApi::class.java)
 }
